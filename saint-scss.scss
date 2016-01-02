@@ -1,0 +1,216 @@
+$instagram-color: #3F5B80;
+$facebook-color: #4E69A2;
+$twitter-color: #51A5E4;
+
+@mixin float-box(){
+    float: left;
+    width: 100%;
+    display: block;
+}
+
+@mixin center-block($width: false){
+    display: block;
+    margin: 0 auto;
+    @if (width == false){
+        width: auto;
+    } @else {
+        width: $width;
+    }
+}
+
+@mixin absolute-center($align: false) {
+    position: absolute;
+    @if ($align == false){
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    @else if($align == "X"){
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @else if($align == "Y"){
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@mixin absolute-to($positionY, $positionX, $margins){
+    position: absolute;
+    @if ($positionY == "bottom"){
+        bottom: $margins;
+    }
+    @if ($positionY == "top"){
+        top: $margins;  
+    }
+    @if ($positionX == "left"){
+        left: $margins;
+    }
+    @if ($positionX == "right"){
+        right: $margins;  
+    }
+}
+
+@mixin absolute($top, $right, $bottom, $left){
+    position: absolute;
+    right: $right;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+}
+
+@mixin size($width, $height: false){
+    width: $width;
+    @if ($height == false){
+        height: $width;
+    } @else {
+      height: $height;
+    }
+}
+
+@mixin square-icon($size){
+    width: $size;
+    height: $size;
+    line-height: $size;
+    text-align: center; 
+}
+
+
+@mixin circle-icon($size){
+    width: $size;
+    height: $size;
+    line-height: $size;
+    text-align: center; 
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+
+
+@mixin horizontal-menu($margins){
+    margin: $margins;
+    &:first-child {
+        margin-left: 0;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+    a {
+        display: block;
+    }
+}
+
+@mixin triangle($size, $color){
+    width: 0;
+    height: 0;
+    border-top: ( $size / 2 ) solid transparent;
+    border-right: $size solid $color;
+    border-bottom: ( $size / 2 ) solid transparent;
+}
+
+@mixin font-face($style-name, $file){
+    $filepath: "../fonts/" + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'),
+             url($filepath + ".woff") format('woff'),
+             url($filepath + ".ttf")  format('truetype'),
+             url($filepath + ".svg#" + $style-name + "") format('svg');
+    }
+}
+
+@mixin font-icon(){
+    font-weight: normal;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: auto;
+}
+
+@mixin insert-font-icon($font, $content){
+    font-family: $font;
+    content: $content;
+    @include font-icon();
+}
+
+@mixin link-color($color, $color-hover){
+	color: $color;
+	&:focus,
+	&:active,
+	&:hover {
+		color: $color-hover;
+	}
+}
+
+@mixin transform($params){
+    -webkit-transform: $params !important;
+       -moz-transform: $params !important;
+            transform: $params !important; 
+}
+@mixin border-radius($params){
+    -webkit-border-radius: $params !important;
+       -moz-border-radius: $params !important;
+            border-radius: $params !important; 
+}
+@mixin box-shadow($params){
+    -webkit-box-shadow: $params !important;
+       -moz-box-shadow: $params !important;
+            box-shadow: $params !important; 
+}
+@mixin transition($params){
+    -webkit-transition: $params !important;
+       -moz-transition: $params !important;
+            transition: $params !important; 
+}
+
+@mixin custom-scroll-bar($width, $radius, $color, $bg){
+    &::-webkit-scrollbar {
+        width: $width;
+        overflow: hidden;
+        @include border-radius($radius);
+    }
+    &::-webkit-scrollbar-thumb {
+      @include border-radius($radius);
+      background: $theme-color;
+    }
+    &::-webkit-scrollbar-track {
+      background: $color;
+      background: url($bg);
+      background-repeat: repeat-y;
+      background-position: center;
+    }
+}
+
+@mixin all-events(){
+    &, &:hover, &:active, &:focus {
+        @content;
+    }
+}
+
+@mixin reset($args...){
+  @each $args in $args{
+    @if $args == "line-height" {line-height: auto;}
+    @if $args == "font-size" {font-size: auto;}
+    @if $args == "position" {position: static;}
+    @if $args == "top" {top: auto;}
+    @if $args == "bottom" {bottom: auto;}
+    @if $args == "left" {left: auto;}
+    @if $args == "right" {right: auto;}
+    @if $args == "margin" {margin: auto;}
+    @if $args == "padding" {padding: auto;}
+    @if $args == "border" {border: none;}
+    @if
+      $args != "margin" and
+      $args != "padding" and
+      $args != "border" and
+      $args != "top" and
+      $args != "left" and
+      $args != "right" and
+      $args != "bottom" and
+      $args != "position" and
+      $args != "font-size" {
+        #{$args}: initial;
+    }
+  }
+}
