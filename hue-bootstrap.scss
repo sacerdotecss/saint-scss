@@ -1,0 +1,206 @@
+@import "toolbox";
+
+$screen-sm: 768px;
+$screen-md: 970px;
+$screen-lg: 1200px;
+$padding: 15px;
+
+* {
+	padding: 0;
+	margin: 0;
+	outline: none;
+	text-decoration: none;
+	@include box-sizing(border-box);
+}
+
+html {
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+	display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden], template {
+  display: none;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup {
+  top: -.5em;
+}
+sub {
+  bottom: -.25em;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+	display: block;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+li,
+header,
+section,
+footer {
+	@include float-box();
+}
+
+li {
+	width: auto;
+}
+
+a,
+span,
+strong {
+	position: relative;
+	display: inline-block;
+}
+
+.container,
+.container-fluid {
+	padding: 0 $padding;
+	margin: 0 auto;
+	position: relative;
+	height: 100%;
+}
+
+.container {
+  @media (min-width: $screen-sm){
+		width: 750px;
+	}
+	@media (min-width: $screen-md){
+		width: 970px;
+	}
+	@media (min-width: $screen-lg){
+		width: 1170px;
+	}
+}
+
+.row {
+  margin-right: -$padding;
+  margin-left: -$padding;
+}
+
+@include grid-generator('col-xs', 12, 15px);
+
+@media (min-width: $screen-sm){
+	@include grid-generator('col-sm', 12, 15px);
+}
+
+@media (min-width: $screen-md){
+	@include grid-generator('col-md', 12, 15px);
+}
+
+@media (min-width: $screen-lg){
+	@include grid-generator('col-lg', 12, 15px);
+}
+
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.hidden {
+  display: none !important;
+}
+.affix {
+  position: fixed;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+.show-sm,
+.show-xs,
+.show-lg {
+	display: none;
+}
+
+@media (max-width: $screen-sm){
+	.hide-xs { display: none; }
+	.show-xs { display: block; }
+}
+@media (min-width: $screen-sm) and (max-width: $screen-md){
+	.hide-sm { display: none; }
+	.show-sm { display: block; }
+}
+@media (min-width: $screen-md) and (max-width: $screen-lg){
+	.hide-md { display: none; }
+	.show-md { display: block; }
+}
+@media (min-width: $screen-lg){
+	.hide-lg { display: none; }
+	.show-lg { display: block; }	
+}

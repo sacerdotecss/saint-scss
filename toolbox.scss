@@ -143,25 +143,30 @@ $twitter-color: #51A5E4;
 	}
 }
 
+@mixin box-sizing($params){
+    -webkit-box-sizing: $params;
+       -moz-box-sizing: $params;
+            box-sizing: $params; 
+}
 @mixin transform($params){
-    -webkit-transform: $params !important;
-       -moz-transform: $params !important;
-            transform: $params !important; 
+    -webkit-transform: $params;
+       -moz-transform: $params;
+            transform: $params; 
 }
 @mixin border-radius($params){
-    -webkit-border-radius: $params !important;
-       -moz-border-radius: $params !important;
-            border-radius: $params !important; 
+    -webkit-border-radius: $params;
+       -moz-border-radius: $params;
+            border-radius: $params; 
 }
 @mixin box-shadow($params){
-    -webkit-box-shadow: $params !important;
-       -moz-box-shadow: $params !important;
-            box-shadow: $params !important; 
+    -webkit-box-shadow: $params;
+       -moz-box-shadow: $params;
+            box-shadow: $params; 
 }
 @mixin transition($params){
-    -webkit-transition: $params !important;
-       -moz-transition: $params !important;
-            transition: $params !important; 
+    -webkit-transition: $params;
+       -moz-transition: $params;
+            transition: $params; 
 }
 
 @mixin custom-scroll-bar($width, $radius, $color, $bg){
@@ -215,9 +220,38 @@ $twitter-color: #51A5E4;
   }
 }
 
+@mixin prefix($prefix){
+    [class^="#{$prefix}"],
+    [class*="#{$prefix}"] {
+        @content;
+    }
+}
 
-@mixin grid-generator($name, $rows){
+@mixin grid-generator($name, $rows, $padding){
   @for $count from 1 through $rows {
-    .#{$name}-#{$count} { width: percentage($count / $rows); }
+    .#{$name}-#{$count} {
+        width: percentage($count / $rows);
+    }
+  }
+  @for $count from 1 through $rows {
+    .#{$name}-pull-#{$count} {
+        right: percentage($count / $rows);
+    }
+  }
+  @for $count from 1 through $rows {
+    .#{$name}-push-#{$count} {
+        left: percentage($count / $rows);
+    }
+  }
+  @for $count from 1 through $rows {
+    .#{$name}-offset-#{$count} {
+        margin-left: percentage($count / $rows);
+    }
+  }
+  @include prefix($name){
+    float: left;
+    position: relative;
+    padding: 0 $padding;
+    min-height: 1px;
   }
 }
