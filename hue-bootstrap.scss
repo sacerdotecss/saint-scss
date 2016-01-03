@@ -198,3 +198,41 @@ strong {
 	.hide-lg { display: none; }
 	.show-lg { display: block; }	
 }
+
+.left-col {
+	float: left;
+}
+
+.left-col + .left-col {
+	margin-left: $padding * 2;
+}
+
+.v-align-box {
+	height: 100%;
+	display: table;
+}
+.v-align-middle {
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.v-align-middle {
+	padding-left: $padding * 2;
+}
+
+.center-items {
+	text-align: center;
+}
+
+figure img {
+	display: inline-block;
+}
+
+.has-mb {
+	margin-bottom: $padding;
+}
+
+.has-mb-2x {
+	margin-bottom: $padding * 2;
+}
