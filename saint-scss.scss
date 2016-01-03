@@ -214,3 +214,10 @@ $twitter-color: #51A5E4;
     }
   }
 }
+
+
+@mixin grid-generator($name, $rows){
+  @for $count from 1 through $rows {
+    .#{$name}-#{$count} { width: percentage($count / $rows); }
+  }
+}
